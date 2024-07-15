@@ -1,0 +1,16 @@
+﻿@page "/"
+@inject IHttpContextAccessor HttpContextAccessor
+
+<h3>Current Host: @CurrentHost</h3>
+
+@code {
+    private string? CurrentHost { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (HttpContextAccessor.HttpContext != null)
+        {
+            CurrentHost = HttpContextAccessor.HttpContext.Request.Host.Value;
+        }
+    }
+}
